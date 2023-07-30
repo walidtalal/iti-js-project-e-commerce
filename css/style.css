@@ -14,7 +14,7 @@ a {
   text-decoration: none;
 }
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -23,7 +23,7 @@ a {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #202124;
+  background: #333;
 }
 .container {
   width: 80%;
@@ -218,38 +218,105 @@ nav li a {
 
 /* Start Hero */
 .hero {
-  min-height: calc(100vh - 60px);
-  background: url("../img/785054-ecommerce-istock-020119.jpg") center/cover
-    no-repeat;
+  min-height: calc(100vh - 80px);
+  /* background: url("../img/785054-ecommerce-istock-020119.jpg") center/cover
+    no-repeat; */
   display: flex;
   align-items: center;
   justify-content: center;
+  /* flex-direction: column; */
+}
+
+@media screen and (max-width: 600px) {
+  .hero {
+    flex-direction: column;
+  }
 }
 .banner {
   text-align: center;
   background: rgba(255, 255, 255, 0.8);
   display: inline-block;
-  padding: 2rem;
+  padding: 30px;
 }
 .banner-title {
-  font-size: 3.4rem;
+  font-size: 30px;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  margin-bottom: 3rem;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
 }
 .banner-btn {
   padding: 1rem 3rem;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 1rem;
+  letter-spacing: 2px;
+  font-size: 14px;
   color: #000;
   border: 1px solid #2196f3;
-  transition: var(--mainTransition);
+  transition: 0.3s;
   cursor: pointer;
 }
 .banner-btn:hover {
   background: transparent;
   color: #2196f3;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  .slider {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .prev,
+  .next {
+    font-size: 16px;
+    padding: 5px;
+  }
 }
 /* End Hero */
 
