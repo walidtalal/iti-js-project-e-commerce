@@ -1,21 +1,4 @@
 ///////////////////////////////////////////////////////////
-//!!!!!!!!! Sticky navigation !!!!!!!!!//
-
-function makeNavbarSticky() {
-  var header = document.querySelector(".header");
-  var stickyPosition = header.offsetTop;
-
-  function handleScroll() {
-    if (window.pageYOffset >= stickyPosition) {
-      header.classList.add("sticky");
-    } else {
-      header.classList.remove("sticky");
-    }
-  }
-
-  window.addEventListener("scroll", handleScroll);
-}
-makeNavbarSticky();
 
 //!!!!!!!!! Define products !!!!!!!!!//
 var productsDom = document.querySelector(".products");
