@@ -1,5 +1,30 @@
 ///////////////////////////////////////////////////////////
 
+//!!!!!!!!! Slider !!!!!!!!!//
+var currentSlide = 0;
+
+function showSlide(n) {
+  var slides = document.querySelectorAll(".slide");
+  if (n >= slides.length) {
+    currentSlide = 0;
+  } else if (n < 0) {
+    currentSlide = slides.length - 1;
+  }
+
+  var slideWidth = slides[currentSlide].clientWidth;
+  var offset = -currentSlide * slideWidth;
+  document.querySelector(".slides").style.transform = `translateX(${offset}px)`;
+}
+
+function changeSlide(n) {
+  currentSlide += n;
+  showSlide(currentSlide);
+}
+
+setInterval(() => changeSlide(1), 5000);
+
+showSlide(currentSlide);
+
 //!!!!!!!!! Define products !!!!!!!!!//
 var productsDom = document.querySelector(".products");
 var cartProductsMenu = document.querySelector(".carts-products");
@@ -22,7 +47,7 @@ var drawProductsUi = (products) => {
           Price: ${item.price} $
         </p>
         <p>
-          Category: ${item.category} 
+          Category: ${item.category}
         </p>
       </div>
       <div class="info">
@@ -36,7 +61,9 @@ var drawProductsUi = (products) => {
 
 //!!!!!!!!! Get Products From Api !!!!!!!!!//
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "products.json", true);
+// "products.json"
+// Api-Link: https://fakestoreapi.com/products
+xhr.open("GET", "https://fakestoreapi.com/products", true);
 xhr.onreadystatechange = function () {
   if (xhr.readyState === 4) {
     if (xhr.status === 200) {
@@ -62,23 +89,25 @@ var addedItem = localStorage.getItem("productsInCart")
 
 if (addedItem) {
   addedItem.map((item) => {
-    cartProductsDivDom.innerHTML += "<p>" + item.title + item.qty + "</p>";
+    var count = 1;
+    cartProductsDivDom.innerHTML += "<p>" + item.title + count + "</p>";
   });
   badgeDom.style.display = "block";
   badgeDom.innerHTML += addedItem.length;
 }
 
 //!!!!!!!!! Add to cart !!!!!!!!!//
-
 var allItems = [];
+
 function addedToCart(id) {
   if (localStorage.getItem("username")) {
     var choosenItem = products.find((item) => item.id === id);
     var item = allItems.find((i) => i.id === choosenItem.id);
 
     if (item) {
-      choosenItem.qty += 1;
+      item.qty = item.qty ? item.qty + 1 : 1;
     } else {
+      choosenItem.qty = 1;
       allItems.push(choosenItem);
     }
 
@@ -132,18 +161,15 @@ function openCartMenu() {
 
 shoppingCartIcon.addEventListener("click", openCartMenu);
 
-// function saveItemData(id) {
-//   localStorage.setItem("productId", id);
-//   window.location = "cartDetails.html";
-// }
-
 //!!!!!!!!! search function !!!!!!!!!//
 var input = document.getElementById("search");
+
 input.addEventListener("keyup", function (e) {
   search(e.target.value, JSON.parse(localStorage.getItem("products")));
   if (e.target.value.trim() === "")
     drawProductsUi(JSON.parse(localStorage.getItem("products")));
 });
+
 function search(title, myArray) {
   let arr = myArray.filter(
     (item) => item.title.toLowerCase().indexOf(title.toLowerCase()) !== -1
@@ -153,9 +179,10 @@ function search(title, myArray) {
 
 //!!!!!!!!! Filter products by category !!!!!!!!!//
 var categoryFilter = document.querySelector("#category-filter");
-categoryFilter.addEventListener("change", getProductsByCategory);
+
 function getProductsByCategory(e) {
   var cat = e.target.value;
+  console.log(cat);
   var products = JSON.parse(localStorage.getItem("products"));
   if (cat === "all") {
     drawProductsUi(products);
@@ -164,6 +191,8 @@ function getProductsByCategory(e) {
     drawProductsUi(products);
   }
 }
+
+categoryFilter.addEventListener("change", getProductsByCategory);
 
 //!!!!!!!!! Function to filter products based on price range !!!!!!!!!//
 function filterProducts() {
