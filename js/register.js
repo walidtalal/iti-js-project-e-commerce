@@ -4,10 +4,15 @@ var password = document.getElementById("password");
 var registerBtn = document.getElementById("sign_up");
 
 registerBtn.addEventListener("click", register);
+
 function register(e) {
   e.preventDefault();
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   if (username.value === "" || email.value === "" || password.value === "") {
     alert("please Fill Data");
+  } else if (!emailRegex.test(email.value)) {
+    alert("Invalid email format");
   } else {
     localStorage.setItem("username", username.value);
     localStorage.setItem("email", email.value);
