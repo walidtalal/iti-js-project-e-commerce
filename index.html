@@ -16,13 +16,10 @@
 
     <link rel="stylesheet" href="css/style.css" />
     <style>
-      /* Styling for the container */
       .container {
         max-width: 1200px;
         margin: 0 auto;
       }
-
-      /* Styling for the products-filter section */
     </style>
     <title>Store</title>
   </head>
@@ -64,7 +61,23 @@
           <h1 class="banner-title">Welcome to our e-commerce</h1>
           <a class="banner-btn" href="#shopping">shop now</a>
         </div>
+        <div class="slider">
+          <div class="slides">
+            <div class="slide slide1">
+              <img src="img/1lacoste.png" alt="Product 1" />
+            </div>
+            <div class="slide slide2">
+              <img src="img/2mango.png" alt="Product 2" />
+            </div>
+            <div class="slide slide3">
+              <img src="img/3nike.png" alt="Product 3" />
+            </div>
+          </div>
+          <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+          <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
       </section>
+
       <section class="home">
         <h2 class="main-title" id="shopping">Shop Now</h2>
         <div class="container">
