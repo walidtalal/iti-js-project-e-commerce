@@ -225,6 +225,12 @@ nav li a {
   align-items: center;
   justify-content: center;
   /* flex-direction: column; */
+  background-image: linear-gradient(
+    90deg,
+    rgb(220, 241, 254) 0%,
+    rgb(230, 241, 238) 35%,
+    rgb(231, 222, 234) 100%
+  );
 }
 
 @media screen and (max-width: 600px) {
@@ -237,6 +243,7 @@ nav li a {
   background: rgba(255, 255, 255, 0.8);
   display: inline-block;
   padding: 30px;
+  margin: auto;
 }
 .banner-title {
   font-size: 30px;
@@ -253,6 +260,8 @@ nav li a {
   border: 1px solid #2196f3;
   transition: 0.3s;
   cursor: pointer;
+  transition: 0.3s;
+  position: relative;
 }
 .banner-btn:hover {
   background: transparent;
@@ -324,6 +333,7 @@ nav li a {
 .home {
   padding-top: 50px;
   padding-bottom: 100px;
+  background-color: whitesmoke;
 }
 .home .container {
   width: 80%;
